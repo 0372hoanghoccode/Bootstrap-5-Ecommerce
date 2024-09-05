@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <!-- custom css -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon"><link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel = "stylesheet" href = "css/main.css">
 </head>
 <body>
@@ -53,63 +51,69 @@
                     <div class="cart-items">
                         <div class="cart-item d-flex align-items-center mb-2">
                             <img src="images/c_polo-shirt.png" class="cart-item-img" alt="Product">
-                            <div class="cart-item-details ms-2">
-                                <span class="cart-item-name">Tên sản phẩm</span>
-                                <span class="cart-item-price">$20.00</span>
+                            <div class="cart-item-details ms-2 d-flex flex-column flex-grow-1">
+                                <span class="cart-item-name">Tên sản phẩm 1</span>
+                                <div class="d-flex justify-content-between align-items-center mt-1">
+                                    <span class="cart-item-price">$20.00</span>
+                                    <span class="cart-item-quantity">x2</span>
+                                </div>
                             </div>
-                            <button type="button" class="btn-close cart-item-remove ms-auto"></button>
+                            <button type="button" class="btn-close cart-item-remove ms-3"></button>
                         </div>
                         <div class="cart-item d-flex align-items-center mb-2">
                             <img src="images/c_tunic-shirt_girl.png" class="cart-item-img" alt="Product">
-                            <div class="cart-item-details ms-2">
-                                <span class="cart-item-name">Tên sản phẩm</span>
-                                <span class="cart-item-price">$20.00</span>
+                            <div class="cart-item-details ms-2 d-flex flex-column flex-grow-1">
+                                <span class="cart-item-name">Tên sản phẩm 2</span>
+                                <div class="d-flex justify-content-between align-items-center mt-1">
+                                    <span class="cart-item-price">$20.00</span>
+                                    <span class="cart-item-quantity">x3</span>
+                                </div>
                             </div>
-                            <button type="button" class="btn-close cart-item-remove ms-auto"></button>
+                            <button type="button" class="btn-close cart-item-remove ms-3"></button>
                         </div>
                         <div class="cart-item d-flex align-items-center mb-2">
                             <img src="images/c_pant_girl.png" class="cart-item-img" alt="Product">
-                            <div class="cart-item-details ms-2">
-                                <span class="cart-item-name">Tên sản phẩm</span>
-                                <span class="cart-item-price">$20.00</span>
+                            <div class="cart-item-details ms-2 d-flex flex-column flex-grow-1">
+                                <span class="cart-item-name">Tên sản phẩm 3</span>
+                                <div class="d-flex justify-content-between align-items-center mt-1">
+                                    <span class="cart-item-price">$30.00</span>
+                                    <span class="cart-item-quantity">x3</span>
+                                </div>
                             </div>
-                            <button type="button" class="btn-close cart-item-remove ms-auto"></button>
+                            <button type="button" class="btn-close cart-item-remove ms-3"></button>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <strong>Tổng:</strong>
-                        <span>$60.00</span>
+                        <span id="cartTotal">$190.00</span>
                     </div>
-                    <button class="btn-cart btn-primary w-100 mt-2" >Thanh toán</button>
+                    <button class="btn-cart btn-primary w-100 mt-2">Thanh toán</button>
                 </div>
-                 <!-- Nút yêu thích -->
+                
     <button type="button" class="btn btn-light position-relative favorites-toggle">
         <i class="fa fa-heart"></i>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">0</span>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">1</span>
     </button>
-    <!-- Yêu thích dropdown -->
     <div class="favorites-dropdown position-absolute end-0 p-3 bg-white shadow rounded" style="display: none;">
         <h6 class="mb-3">Danh sách yêu thích</h6>
         <div class="favorites-items">
-            <!-- Example Favorite Item -->
             <div class="favorites-item d-flex align-items-center mb-2">
                 <img src="images/c_shirt-girl.png" class="favorites-item-img" alt="Favorite Product">
                 <div class="favorites-item-details ms-2">
-                    <span class="favorites-item-name">Tên sản phẩm yêu thích</span>
+                    <span class="favorites-item-name">Áo tay dài ba lỗ</span>
                 </div>
                 <button type="button" class="btn-close favorites-item-remove ms-auto"></button>
             </div>
-            <!-- Add more items as needed -->
         </div>
     </div>
-    <!-- Nút đăng ký -->
     <button type="button" class="btn btn-light position-relative register-toggle">
         <i class="fa fa-user"></i>
     </button>
-    <!-- Đăng ký dropdown -->
     <div class="register-dropdown position-absolute end-0 p-3 bg-white shadow rounded" style="display: none;">
-        <h6 class="mb-3">Đăng ký</h6>
-        <form>
+        <h6 class="mb-3 text-center" id="form-title">Đăng ký</h6>
+    
+        <!-- Form đăng ký -->
+        <form id="registerForm" style="display: block;">
             <div class="mb-3">
                 <label for="registerName" class="form-label">Tên</label>
                 <input type="text" class="form-control" id="registerName" placeholder="Nhập tên">
@@ -118,12 +122,31 @@
                 <label for="registerEmail" class="form-label">Email</label>
                 <input type="email" class="form-control" id="registerEmail" placeholder="Nhập email">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 position-relative">
                 <label for="registerPassword" class="form-label">Mật khẩu</label>
                 <input type="password" class="form-control" id="registerPassword" placeholder="Nhập mật khẩu">
+                <i class="fa fa-eye position-absolute" id="toggleRegisterPassword" style="right: 10px; top: 72%; transform: translateY(-50%); cursor: pointer;"></i>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+            <button type="submit" class="btn-đk btn-primary w-100">Đăng ký</button>
         </form>
+    
+        <!-- Form đăng nhập -->
+        <form id="loginForm" style="display: none;">
+            <div class="mb-3">
+                <label for="loginEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="loginEmail" placeholder="Nhập email">
+            </div>
+            <div class="mb-3 position-relative">
+                <label for="loginPassword" class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Nhập mật khẩu">
+                <i class="fa fa-eye position-absolute" id="toggleLoginPassword" style="right: 10px; top: 72%; transform: translateY(-50%); cursor: pointer;"></i>
+            </div>
+            <button type="submit" class="btn-đn btn-primary w-100">Đăng nhập</button>
+        </form>
+    
+        <div class="text-center mt-3">
+            <a href="#" id="toggleForm">Đã có tài khoản? Đăng nhập</a>
+        </div>
     </div>
 </div>                              
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">

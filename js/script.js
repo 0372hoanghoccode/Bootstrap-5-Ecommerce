@@ -2,8 +2,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Khởi tạo Isotope cho danh sách sản phẩm
     var $grid = new Isotope('.collection-list', {
-      itemSelector: '.col-md-6', // Chọn lớp của các mục
-      layoutMode: 'fitRows' // Hoặc kiểu khác như 'masonry'
+      itemSelector: '.col-md-6',
+      layoutMode: 'fitRows' 
     });
 
     // Xử lý sự kiện nhấn vào các nút lọc
@@ -12,19 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
     filterButtons.forEach(function(button) {
       button.addEventListener('click', function() {
         var filterValue = this.getAttribute('data-filter');
-        
-        // Đặt lại trạng thái của tất cả các nút lọc
         resetFilterBtns();
-        
-        // Thêm lớp 'active-filter-btn' cho nút được nhấn
         this.classList.add('active-filter-btn');
-        
-        // Áp dụng bộ lọc
         $grid.arrange({ filter: filterValue });
       });
     });
 
-    // Hàm đặt lại trạng thái của tất cả các nút lọc
     function resetFilterBtns() {
       filterButtons.forEach(function(btn) {
         btn.classList.remove('active-filter-btn');
@@ -42,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput.style.display = 'none';
     } else {
         searchInput.style.display = 'block';
-        searchInput.focus(); // Focus vào ô nhập liệu khi hiện lên
+        searchInput.focus(); 
     }
 });
 
@@ -52,55 +45,43 @@ function showPromoToast() {
   promoToast.show();
 }
 
-// Hiển thị toast mỗi 30 giây
 setInterval(showPromoToast, 15000);
 
-// Hiển thị toast ngay khi trang vừa tải
 document.addEventListener('DOMContentLoaded', showPromoToast);
 
-// Toggle visibility of cart dropdown
 document.querySelector('.cart-toggle').addEventListener('click', function() {
   var cartDropdown = document.querySelector('.cart-dropdown');
   var favoritesDropdown = document.querySelector('.favorites-dropdown');
   var registerDropdown = document.querySelector('.register-dropdown');
   
-  // Hide other dropdowns
   favoritesDropdown.style.display = 'none';
   registerDropdown.style.display = 'none';
 
-  // Toggle visibility of cart
   cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-// Toggle visibility of favorites dropdown
 document.querySelector('.favorites-toggle').addEventListener('click', function() {
   var cartDropdown = document.querySelector('.cart-dropdown');
   var favoritesDropdown = document.querySelector('.favorites-dropdown');
   var registerDropdown = document.querySelector('.register-dropdown');
   
-  // Hide other dropdowns
   cartDropdown.style.display = 'none';
   registerDropdown.style.display = 'none';
 
-  // Toggle visibility of favorites
   favoritesDropdown.style.display = favoritesDropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-// Toggle visibility of register dropdown
 document.querySelector('.register-toggle').addEventListener('click', function() {
   var cartDropdown = document.querySelector('.cart-dropdown');
   var favoritesDropdown = document.querySelector('.favorites-dropdown');
   var registerDropdown = document.querySelector('.register-dropdown');
   
-  // Hide other dropdowns
   cartDropdown.style.display = 'none';
   favoritesDropdown.style.display = 'none';
 
-  // Toggle visibility of register
   registerDropdown.style.display = registerDropdown.style.display === 'block' ? 'none' : 'block';
 });
 
-// Close dropdowns when clicking outside
 document.addEventListener('click', function(e) {
   var cartDropdown = document.querySelector('.cart-dropdown');
   var favoritesDropdown = document.querySelector('.favorites-dropdown');
@@ -111,4 +92,47 @@ document.addEventListener('click', function(e) {
       favoritesDropdown.style.display = 'none';
       registerDropdown.style.display = 'none';
   }
+});
+
+// Chuyển đổi giữa form đăng ký và đăng nhập
+document.querySelector('#toggleForm').addEventListener('click', function(e) {
+  e.preventDefault();
+  const registerForm = document.getElementById('registerForm');
+  const loginForm = document.getElementById('loginForm');
+  const formTitle = document.getElementById('form-title');
+  const toggleText = document.getElementById('toggleForm');
+
+  if (registerForm.style.display === 'block') {
+      registerForm.style.display = 'none';
+      loginForm.style.display = 'block';
+      formTitle.textContent = 'Đăng nhập';
+      toggleText.textContent = 'Chưa có tài khoản? Đăng ký';
+  } else {
+      registerForm.style.display = 'block';
+      loginForm.style.display = 'none';
+      formTitle.textContent = 'Đăng ký';
+      toggleText.textContent = 'Đã có tài khoản? Đăng nhập';
+  }
+});
+
+// Xử lý ẩn/hiện mật khẩu trong form đăng ký
+document.querySelector('#toggleRegisterPassword').addEventListener('click', function () {
+  const registerPasswordField = document.getElementById('registerPassword');
+  const type = registerPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+  registerPasswordField.setAttribute('type', type);
+
+  // Đổi biểu tượng mắt
+  this.classList.toggle('fa-eye');
+  this.classList.toggle('fa-eye-slash');
+});
+
+// Xử lý ẩn/hiện mật khẩu trong form đăng nhập
+document.querySelector('#toggleLoginPassword').addEventListener('click', function () {
+  const loginPasswordField = document.getElementById('loginPassword');
+  const type = loginPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+  loginPasswordField.setAttribute('type', type);
+
+  // Đổi biểu tượng mắt
+  this.classList.toggle('fa-eye');
+  this.classList.toggle('fa-eye-slash');
 });
